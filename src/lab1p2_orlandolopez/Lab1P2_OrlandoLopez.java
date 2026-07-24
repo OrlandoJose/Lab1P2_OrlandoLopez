@@ -21,8 +21,8 @@ static ArrayList<String>lista=new ArrayList<>();
         while(opcion!=0){
         System.out.println("1.-Agregar Producto");
         System.out.println("2.-Mostrar catalogo y productos");
-        System.out.println("3.-Actualizar y eliminar producto");
-        System.out.println("4.-Eliminar");
+        System.out.println("3.-Actualizar producto");
+        System.out.println("4.-Eliminar producto");
         System.out.println("5.-Reporte General");
         System.out.println("0.-Salir");
         System.out.println("Ingrese una opcion");
@@ -70,13 +70,13 @@ static ArrayList<String>lista=new ArrayList<>();
                         valioso(lista);
                     }break;
                     case 2:{
-                        
+                        Valortotal(lista);
                     }break;
                     case 3:{
-                        
+                       Promedio(lista); 
                     }break;
                     case 4:{
-                        
+                      Categoria(lista);  
                     }break;
                     default:System.out.println("Ingrese una opcion valida");
                 }
@@ -105,19 +105,64 @@ static ArrayList<String>lista=new ArrayList<>();
     public static void reemplazar(ArrayList<String>s){       
         System.out.println("Ingrese el indice del producto(inician en 0): ");
         int indice=leer.nextInt();
-        System.out.println("Ingrese el precio actualizado");
+        System.out.println("Ingrese el precio actualizado:");
+        String precionuevo=leer.next();
         String l="";
         for(int i=0;i<lista.size();i++){
             l=lista.get(indice)+"";
+        }     
+        String[] arreglo=l.split(",");       
+        String precioviejo=arreglo[2];
+        arreglo[2]=precionuevo;
+        String nuevalista="";
+        for(int i=0;i<arreglo.length;i++){
+            nuevalista+=arreglo[i]+",";
         }
-        
-        String[] i=l.split(",");
-            
+        lista.set(indice,nuevalista);
         System.out.println("Lista actualizada:");
         imprimir(lista);
     }
     public static void valioso(ArrayList<String>s){
         int mayor=0;
+        int menor=10000;
+        String nombremayor="";
+        String nombremenor="";
+        for(int i=0;i<lista.size();i++){
+            String list=lista.get(i); 
+            String[] arreglo=list.split(",");
+           int precio=Integer.parseInt(arreglo[2]);
+           if(precio>mayor){
+               mayor=precio;
+            String list2=lista.get(i); 
+            String[] arreglo2=list.split(",");
+            nombremayor=arreglo2[0];
+           }
+           if(precio<menor){
+               menor=precio;
+               String list2=lista.get(i); 
+               String[] arreglo2=list.split(",");
+               nombremenor=arreglo2[0];
+           }
+        }
+        System.out.println("El producto mas valioso es:"+nombremayor);
+        System.out.println("El producto menos valioso es:"+nombremenor);
+    }
+    public static void Valortotal(ArrayList<String>s){
+        int resultado=0;
+        for(int i=0;i<lista.size();i++){
+           String list=lista.get(i);         
+           String[] arreglo=list.split(",");
+           int precio=Integer.parseInt(arreglo[2]);
+           int cantidad=Integer.parseInt(arreglo[3]);
+           resultado+=precio*cantidad;
+        }
+        System.out.println("El valor total de los prodcutos es:"+resultado);
+    }
+    public static void Categoria(ArrayList<String>s){
+        
+    }
+    public static void Promedio(ArrayList<String>s){
+        
         for(int i=0;i<lista.size();i++){
             
         }
