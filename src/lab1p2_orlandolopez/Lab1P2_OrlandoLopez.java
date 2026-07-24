@@ -13,7 +13,6 @@ import java.util.Scanner;
 public class Lab1P2_OrlandoLopez {
 static Scanner leer=new Scanner(System.in);
 static ArrayList<String>lista=new ArrayList<>(); 
-static String Precio;
     /**
      * @param args the command line arguments
      */
@@ -96,31 +95,24 @@ static String Precio;
                 String precio=leer.next();             
                 System.out.println("Ingrese la cantidad del producto disponible");
                 String cantidad=leer.next();
-                lista.add("nombre:"+nombre+" categoria:"+categoria+" precio:"+precio+" cantidad:"+cantidad);
+                lista.add(nombre+","+categoria+","+precio+","+cantidad);
     return s;}
     public static void imprimir(ArrayList<String>s){
             for(int i=0;i<lista.size();i++){
                 System.out.println(lista.get(i));           
         }            
     }
-    public static void reemplazar(ArrayList<String>s){ 
+    public static void reemplazar(ArrayList<String>s){       
         System.out.println("Ingrese el indice del producto(inician en 0): ");
         int indice=leer.nextInt();
-        String lis="";
-        int cont=0;
+        System.out.println("Ingrese el precio actualizado");
+        String l="";
         for(int i=0;i<lista.size();i++){
-            if(indice==i){
-            lis=lista.get(i);
-            }
-            for(int j=0;j<lista.size();j++){
-                char lis1=lis.charAt(i);
-                if(lis.contains(":")){
-                    System.out.println("Ingrese el precio actualizado:");
-                    String precio=leer.next();
-                    lis+=precio;        
-                }
-                }
-            }
+            l=lista.get(indice)+"";
+        }
+        
+        String[] i=l.split(",");
+            
         System.out.println("Lista actualizada:");
         imprimir(lista);
     }
@@ -135,7 +127,7 @@ static String Precio;
             int indice=leer.nextInt();
             lista.remove(indice);
                 System.out.println("Producto eliminado exitosamente");
-                System.out.println("La nuev alista es:");
+                System.out.println("La nueva lista es:");
                 imprimir(lista);
             }
     }
